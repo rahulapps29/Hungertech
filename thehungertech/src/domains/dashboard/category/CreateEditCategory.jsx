@@ -4,7 +4,7 @@ import DashboardLayout from "../DashboardLayout";
 import request from "../../../utilities/request";
 import './EditCategory.scss'
 import FileUpload from '../common/components/FileUpload'
-import {API_URLS} from '../../../constants/constant'
+import {API_URLS,BASE_SERVER_URL} from '../../../constants/constant'
 
 
 function CreateEditCategory() {
@@ -89,7 +89,7 @@ function CreateEditCategory() {
 					</div>
 					<div className="editcat__container--image editcat__container--item">
 						<label>Image:</label>
-						{category.image && <img src={category.image}></img>}
+						{category.image && <img src={`${BASE_SERVER_URL}/${category.image}`}></img>}
 						<FileUpload onUpload={updateFileName}></FileUpload>
 					</div>
 				</div>

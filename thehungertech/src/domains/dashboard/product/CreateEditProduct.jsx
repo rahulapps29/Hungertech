@@ -4,7 +4,7 @@ import DashboardLayout from "../DashboardLayout";
 import request from "../../../utilities/request";
 import FileUpload from "../common/components/FileUpload";
 import Multiselect from "multiselect-react-dropdown";
-import { API_URLS } from "../../../constants/constant";
+import { API_URLS, BASE_SERVER_URL } from "../../../constants/constant";
 
 import "./EditProduct.scss";
 
@@ -158,7 +158,7 @@ function CreateEditProduct() {
 					</div>
 					<div className="editproduct__container--image editproduct__container--item">
 						<label>Image:</label>
-						{product.image && <img src={product.image}></img>}
+						{product.image && <img src={`${BASE_SERVER_URL}/${product.image}`}></img>}
 						<FileUpload onUpload={updateFileName}></FileUpload>
 					</div>
 				</div>

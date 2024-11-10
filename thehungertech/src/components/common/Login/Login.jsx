@@ -12,6 +12,7 @@ function Login() {
 	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const [signInData, setSignInData] = useState({ email: "", password: "" });
 	const [signUpData, setSignUpData] = useState({ email: "", password: "", phone:'', lName:'', fName:''});
+	const [error,setError] = useState(null)
 	console.log("user in login comp", user);
 
 	const initiateLogin = () => {
@@ -29,32 +30,44 @@ function Login() {
 		localStorage.removeItem("user_token");
 	}
 	const doSignup = async () => {
-		console.log("do login");
-		console.log("data", signUpData);
-		const resp = await request.post({
-			url: API_URLS.signup,
-			data: signUpData,
-		});
-		if (resp.token && resp.user) {
-			setUser(resp.user);
-			setShowSignUpModal(false);
-			localStorage.setItem("isLoggedIn", true);
-			localStorage.setItem("user_token", JSON.stringify(resp.token));
+		setError('')
+		try {
+			const resp = await request.post({
+				url: API_URLS.signup,
+				data: signUpData,
+			});
+			if (resp.token && resp.user) {
+				setUser(resp.user);
+				setShowSignUpModal(false);
+				localStorage.setItem("isLoggedIn", true);
+				localStorage.setItem("user_token", JSON.stringify(resp.token));
+			}
 		}
+		catch(err){
+			setError(err?.response?.data?.error || 'Something Went Wrong');
+		}
+		
 	}
 	const doLogin = async () => {
+		setError('')
 		console.log("do login");
 		console.log("data", signInData);
-		const resp = await request.post({
-			url: API_URLS.doLogin,
-			data: signInData,
-		});
-		if (resp.token && resp.user) {
-			setUser(resp.user);
-			setShowSignInModal(false);
-			localStorage.setItem("isLoggedIn", true);
-			localStorage.setItem("user_token", JSON.stringify(resp.token));
+		try{
+			const resp = await request.post({
+				url: API_URLS.doLogin,
+				data: signInData,
+			});
+			if (resp.token && resp.user) {
+				setUser(resp.user);
+				setShowSignInModal(false);
+				localStorage.setItem("isLoggedIn", true);
+				localStorage.setItem("user_token", JSON.stringify(resp.token));
+			}
 		}
+		catch(err){
+			setError(err?.response?.data?.error || 'Something Went Wrong');
+		}
+		
 	};
 	return (
 		<div className="login">
@@ -63,7 +76,7 @@ function Login() {
 					Login
 				</span>
 			)}
-			{user && <span onClick={doLogout} className="login__text">Logout</span>}
+			{user && <span onClick={doLogout} className="login__text">{user.fName}</span>}
 
 			<>
 				{(showSignInModal || showSignUpModal) && (
@@ -100,6 +113,7 @@ function Login() {
 											onChange={handleSignInChange}
 										/>
 									</div>
+									<p className="login__error">{error}</p>
 									<button className="login__button" onClick={doLogin}>
 										Login
 									</button>
@@ -108,6 +122,7 @@ function Login() {
 										<b
 											className="login__signin-signup-text"
 											onClick={() => {
+												setError('')
 												setShowSignInModal(false);
 												setShowSignUpModal(true);
 											}}
@@ -142,12 +157,14 @@ function Login() {
 											onChange={handleSignUpChange}
 										/>
 									</div>
+									<p className="login__error">{error}</p>
 									<button className="login__button" onClick={doSignup}>SignUp</button>
 									<p>
 										Already have an account ..{" "}
 										<b
 											className="login__signin-signup-text"
 											onClick={() => {
+												setError('')
 												setShowSignInModal(true);
 												setShowSignUpModal(false);
 											}}
