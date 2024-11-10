@@ -46,6 +46,10 @@
 			}
 		}
 	}
+	&__error{
+		font-size: 14px;
+    	color: red;
+	}
 	&__button {
 		width: 10rem;
 		align-self: center;
