@@ -1,0 +1,12 @@
+.catList {
+	&__table {
+		th,
+		td {
+			border: 1px solid;
+			padding: 1rem;
+		}
+		&--delete-icon {
+			padding-left: 1rem;
+		}
+	}
+}

@@ -1,0 +1,48 @@
+body {
+	margin: 0;
+	font-family: sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+.page-body {
+	background-color: #fafafa;
+	padding-top: 5rem;
+
+	.main-page-content {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.content-desc {
+		color: #636363;
+		font-size: 14px;
+	}
+	.section {
+		margin-top: 2rem;
+	}
+}
+button {
+	border: none;
+	background: #2f5fec;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 0.25rem;
+}
+.icon {
+	cursor: pointer;
+}

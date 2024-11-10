@@ -1,0 +1,23 @@
+.order {
+    &__list {
+        display: flex;
+        width: 100%;
+        &:last-child {
+            border-top: 2px solid;
+        }
+        &:first-child {
+            font-weight: bold;
+        }
+        &--item {
+            width: 50%;
+            padding: 12px;
+            display: flex;
+        }
+        &--prodname {
+            width: 35%;
+        }
+        &--cartcounter {
+            width: 80px;
+        }
+    }
+}

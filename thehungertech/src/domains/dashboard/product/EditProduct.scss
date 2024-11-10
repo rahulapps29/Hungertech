@@ -1,0 +1,38 @@
+.editproduct {
+	&__container {
+		width: 50%;
+		&--item {
+			margin-top: 2rem;
+            input,textarea {
+                padding: 0.5rem;
+            }
+            label {
+                display: inline-block;
+                width: 12rem;
+            }
+		}
+		&--image {
+			img {
+				width: 10rem;
+			}
+		}
+		&--cat {
+			display: flex;
+		}
+		&--cat-list {
+			width: 100%;
+		}
+		&--desc,&--image , &--name{
+			label {
+				vertical-align: top;
+			}
+		}
+	}
+    &__buttons {
+        display: flex;
+        width: 15rem;
+        justify-content: space-between;
+        margin-top: 1rem;
+        
+    }
+}

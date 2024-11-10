@@ -1,0 +1,22 @@
+.cart {
+	&__icon {
+		position: relative;
+	}
+	&__text {
+		padding-left: 8px;
+		vertical-align: top;
+	}
+
+	&__quantity {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		font-size: 14px;
+		transform: translate(-50%, -5%);
+	}
+	svg {
+		fill: #fff;
+		stroke-width: 2px;
+		stroke: #000;
+	}
+}
